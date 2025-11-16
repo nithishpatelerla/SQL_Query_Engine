@@ -1,0 +1,64 @@
+/* src/styles/RightPanel.css */
+.right-root {
+  font-size: 14px;
+  color: #05224a;
+}
+.tabs {
+  display: block;
+}
+.tabs-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.tab {
+  background: #2563eb; /* blue solid */
+  color: white;
+  font-weight: 500;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+
+.tab:hover {
+  background: #1d4ed8;
+}
+
+/* hide actual radio inputs */
+input[name="rp-tab"] {
+  display: none;
+}
+
+/* tab content visibility controlled via CSS sibling selector */
+#rp-schema:checked ~ .tabs-row + #rp-schema-content,
+#rp-info:checked ~ .tabs-row + #rp-info-content,
+#rp-tips:checked ~ .tabs-row + #rp-tips-content {
+  display: block;
+}
+
+/* default show schema content block via simple order in component (we used checked input) */
+.tab-content {
+  display: none;
+}
+
+/* schema style */
+.schema-block {
+  margin-bottom: 14px;
+}
+.schema-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #976b3a;
+}
+.schema-list {
+  padding-left: 16px;
+  margin: 0;
+  list-style: none;
+}
+.schema-list li {
+  margin: 6px 0;
+  color: var(--accent);
+  font-weight: 500;
+}

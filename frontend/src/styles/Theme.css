@@ -1,0 +1,156 @@
+/* ---------------------- */
+/* THEME (matches your HTML demo) */
+/* Light: gradient + glass, Dark: gradient + glass */
+/* ---------------------- */
+
+/* ---- LIGHT THEME (defaults) ---- */
+:root {
+  /* page background (gradient like demo) */
+  --bg-gradient: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%);
+  --bg: var(--bg-gradient);
+
+  /* glass & borders */
+  --glass-bg: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.25);
+
+  /* text & accents */
+  --text: #0f172a; /* dark slate for light theme */
+  --accent: #3064d5; /* main blue */
+  --accent-light: #1a6bed; /* lighter blue for hover */
+  --muted: rgba(15, 23, 42, 0.45);
+
+  /* buttons etc */
+  --button-bg: var(--accent);
+  --button-bg-hover: var(--accent-light);
+
+  /* highlights */
+  --highlight: rgba(59, 130, 246, 0.06); /* subtle blue highlight */
+
+  /* visual tokens */
+  --radius: 12px;
+  --shadow: 0 6px 22px rgba(2, 6, 23, 0.08);
+  --glass-blur: blur(14px);
+  --transition-fast: 150ms ease;
+  --transition-base: 300ms ease;
+}
+
+/* ---- DARK THEME (applied when body has .dark) ----
+   matches your HTML demo colors */
+body.dark {
+  --bg-gradient: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #1e3a8a 100%);
+  --bg: var(--bg-gradient);
+
+  --glass-bg: rgba(15, 23, 42, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.15);
+
+  --text: #f1f5f9; /* near-white for dark */
+  --accent: #60a5fa; /* sky/soft blue */
+  --accent-light: #93c5fd; /* very pale blue */
+  --muted: rgba(241, 245, 249, 0.45);
+
+  --button-bg: var(--accent);
+  --button-bg-hover: var(--accent-light);
+
+  --highlight: rgba(147, 197, 253, 0.06);
+
+  --shadow: 0 6px 22px rgba(0, 0, 0, 0.45);
+  --glass-blur: blur(14px);
+}
+
+/* ---------------------- */
+/* GLOBAL LAYOUT / BASES  */
+/* ---------------------- */
+
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg);
+  color: var(--text);
+  transition: background var(--transition-base), color var(--transition-base);
+}
+
+/* glass utility (consistent across files) */
+.glass {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  color: var(--text);
+  transition: background var(--transition-fast),
+    border-color var(--transition-fast), color var(--transition-fast);
+}
+
+/* generic buttons */
+.button,
+button {
+  font-family: inherit;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border: none;
+  transition: background var(--transition-fast), color var(--transition-fast),
+    transform 80ms;
+  background: var(--button-bg);
+  color: #fff;
+}
+button:hover,
+.button:hover {
+  background: var(--button-bg-hover);
+}
+
+/* small pill / tab */
+.pill {
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text);
+  cursor: pointer;
+  transition: background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+/* headings and accent text */
+.brand,
+h1,
+h2,
+h3,
+.accent {
+  color: var(--accent);
+  transition: color var(--transition-fast);
+}
+
+/* muted text */
+.muted {
+  color: var(--muted);
+}
+
+/* subtle highlight used on hover rows etc */
+.row-highlight {
+  background: var(--highlight);
+  transition: background var(--transition-fast);
+}
+
+/* utility */
+.hidden {
+  display: none;
+}
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

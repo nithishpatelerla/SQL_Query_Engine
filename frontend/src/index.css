@@ -1,0 +1,50 @@
+/* ---------------------------------------------------- */
+/* index.css – base imports + global resets             */
+/* MUST load theme.css first so variables override all */
+/* ---------------------------------------------------- */
+
+@import "../src/styles/Theme.css";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+/* Root fallback accent (used by some components) */
+:root {
+  --accent: var(--accent); /* forwards theme variable */
+}
+
+/* Global resets */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+#root {
+  height: 100%;
+}
+
+/* Scrollbars match theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 8px;
+}
+body.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.28);
+}

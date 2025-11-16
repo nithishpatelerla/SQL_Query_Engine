@@ -1,0 +1,87 @@
+/* -------------------------------------------------------- */
+/* Sidebar.css — Full HTML-demo theme applied               */
+/* -------------------------------------------------------- */
+
+.sidebar-root {
+  font-size: 14px;
+  color: var(--text);
+  width: 100%;
+}
+
+/* Section header (table name) */
+.sidebar-section {
+  margin-bottom: 22px;
+}
+
+.sidebar-section h3 {
+  margin: 0 0 10px 0;
+  font-weight: 600;
+  color: #976b3a;
+  font-size: x-large;
+  font-weight: 900;
+  cursor: pointer;
+  transition: color 0.25s;
+}
+
+.sidebar-section h3:hover {
+  color: var(--accent-light);
+}
+
+/* Table wrapper */
+.table-wrap {
+  overflow: auto;
+  border-radius: 12px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow);
+}
+
+/* Inner table */
+.db-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+/* Header cells */
+.db-table th {
+  background: rgba(255, 255, 255, 0.45);
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  color: var(--text);
+  transition: background 0.25s, color 0.25s;
+}
+
+/* Data cells */
+.db-table td {
+  padding: 9px 12px;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  color: var(--text);
+  transition: background 0.25s;
+}
+
+/* Row hover */
+.db-table tr:hover td {
+  background: var(--highlight);
+}
+
+/* Alternating subtle striping */
+.db-table tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Dark mode adjustments */
+body.dark .db-table th {
+  background: rgba(255, 255, 255, 0.18);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark .db-table tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.04);
+}
