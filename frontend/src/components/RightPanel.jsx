@@ -8,7 +8,8 @@ export default function RightPanel({ selectedTable }) {
   useEffect(() => {
     if (!selectedTable) return;
 
-    fetch(`http://localhost:5000/table-info/${selectedTable}`)
+    fetch(`https://sql-query-engine.onrender.com/table-info/${selectedTable}`)
+
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") setInfo(data);
