@@ -62,3 +62,7 @@ input[name="rp-tab"] {
   color: var(--accent);
   font-weight: 500;
 }
+
+.right-panel-header {
+  cursor: pointer;
+}
