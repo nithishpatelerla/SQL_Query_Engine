@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
+import BASE_URL from "../config";
+
 
 export default function Signup() {
   const [username, setUsername] = useState("");
@@ -25,11 +27,11 @@ export default function Signup() {
       return setErr('Captcha incorrect. Type "SQL".');
 
     try {
-      const res = await fetch("https://sql-query-engine.onrender.com/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      });
+      const res = await fetch(`${BASE_URL}/signup`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ username, password }),
+});
 
       const data = await res.json();
 

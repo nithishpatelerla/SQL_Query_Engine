@@ -1,25 +1,44 @@
 // src/components/RightPanel.jsx
 import React, { useEffect, useState } from "react";
+import BASE_URL from "../config"; 
 import "../styles/RightPanel.css";
 
 export default function RightPanel({ selectedTable }) {
   const [info, setInfo] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!selectedTable) return;
+    if (!selectedTable) {
+      setInfo(null);
+      return;
+    }
 
-    fetch(`https://sql-query-engine.onrender.com/table-info/${selectedTable}`)
+    const fetchTableInfo = async () => {
+      setLoading(true);
 
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === "success") setInfo(data);
-      });
+      try {
+        const res = await fetch(`${BASE_URL}/table-info/${selectedTable}`);
+        const data = await res.json();
+
+        if (data.status === "success") {
+          setInfo(data);
+        }
+      } catch (err) {
+        console.error("Error fetching table info:", err);
+      }
+
+      setLoading(false);
+    };
+
+    fetchTableInfo();
   }, [selectedTable]);
 
   return (
     <div className="right-root">
       <div className="tabs">
+        
         <input type="radio" name="rp-tab" id="rp-schema" defaultChecked />
+
         <div className="tabs-row">
           <label htmlFor="rp-schema" className="tab">
             Schema
@@ -29,23 +48,29 @@ export default function RightPanel({ selectedTable }) {
         <div className="tab-content" id="rp-schema-content">
           {!selectedTable ? (
             <p>Select a table to view details</p>
+          ) : loading ? (
+            <p>Loading...</p>
           ) : info ? (
             <>
+              {/* Schema Section */}
               <div className="schema-block">
                 <div className="schema-title">📁 {selectedTable}</div>
                 <ul className="schema-list">
                   {info.columns.map((c) => (
                     <li key={c.name}>
-                      {c.name} [{c.type}]
+                      <strong>{c.name}</strong> [{c.type}]
                     </li>
                   ))}
                 </ul>
               </div>
+
               <br />
 
+              {/* Sample Rows Section */}
               <div className="schema-block">
                 <div className="schema-title">📌 Table Rows</div>
-                {info.sample.length ? (
+
+                {info.sample.length > 0 ? (
                   <table className="db-table">
                     <thead>
                       <tr>
@@ -70,7 +95,7 @@ export default function RightPanel({ selectedTable }) {
               </div>
             </>
           ) : (
-            <p>Loading...</p>
+            <p>No info available</p>
           )}
         </div>
       </div>

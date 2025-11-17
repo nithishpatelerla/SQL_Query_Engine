@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import "./Login.css";
+import BASE_URL from "../config";
+
 
 export default function Login() {
   const { login } = useContext(AuthContext);
@@ -20,7 +22,7 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const res = await fetch("https://sql-query-engine.onrender.com/login", {
+      const res = await fetch(`${BASE_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
