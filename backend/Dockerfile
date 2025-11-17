@@ -2,16 +2,14 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# copy requirements first
+# Install dependencies
 COPY requirements.txt .
-
 RUN pip install --no-cache-dir -r requirements.txt
 
-# copy backend code
+# Copy backend code
 COPY . .
 
-# expose port
+# Run Flask
+ENV DB_PATH=/app/sql_runner.db
 EXPOSE 5000
-
-# start flask
 CMD ["python", "app.py"]
