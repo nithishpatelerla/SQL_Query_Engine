@@ -85,3 +85,13 @@ body.dark .db-table th {
 body.dark .db-table tr:nth-child(even) td {
   background: rgba(255, 255, 255, 0.04);
 }
+
+.sidebar-root h4.small {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 4px;
+}
+
+.table-list {
+  cursor: pointer;
+}
+
