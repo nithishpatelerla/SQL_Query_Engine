@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Sidebar.css";
-import BASE_URL from "../config";   // ✅ import global backend URL
+import BASE_URL from "../config";   // 
 
 export default function Sidebar({ onTableSelect, onTablesChange }) {
   const [tables, setTables] = useState([]);
   const [tableData, setTableData] = useState({});
   const [loading, setLoading] = useState(false);
 
-  // 👉 Fetch table names from backend
   useEffect(() => {
     async function fetchTables() {
       try {
