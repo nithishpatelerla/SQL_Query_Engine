@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+
+  backend:
+    build: ./backend
+    container_name: sql_backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./sql_runner.db:/app/sql_runner.db   # mount DB file
+    environment:
+      - DB_PATH=/app/sql_runner.db
+
+  frontend:
+    build: ./frontend
+    container_name: sql_frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend

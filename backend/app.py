@@ -10,8 +10,16 @@ app = Flask(__name__)
 CORS(app)  # allow requests from your React dev server
 
 # Path to your DB file (relative to backend folder)
+# BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# DB_PATH = os.path.join(BASE_DIR, '..', 'sql_runner.db')
+
+# --------------------------
+# UPDATED DOCKER-FRIENDLY DB PATH
+# --------------------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(BASE_DIR, '..', 'sql_runner.db')
+DEFAULT_DB_PATH = os.path.join(BASE_DIR, "..", "sql_runner.db")
+DB_PATH = os.environ.get("DB_PATH", DEFAULT_DB_PATH)
+# --------------------------
 
 def get_connection():
     conn = sqlite3.connect(DB_PATH)
@@ -179,8 +187,6 @@ def signup():
         conn.close()
 
 
-
-
 # --- NEW: Login endpoint ---
 @app.route('/login', methods=['POST'])
 def login():
@@ -250,9 +256,6 @@ def init_users_table():
         conn.commit()
     finally:
         conn.close()
-
-
-
 
 
 
