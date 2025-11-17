@@ -150,14 +150,13 @@
   max-height: 260px;
   overflow-y: auto;
 
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 1);
   border: 1px solid var(--glass-border);
   border-radius: 12px;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow: var(--shadow);
   padding: 10px;
-
   animation: dropdownFade 0.18s ease-out;
 }
 
@@ -178,7 +177,7 @@
   padding: 10px 12px;
   border-radius: 8px;
   cursor: pointer;
-  color: var(--text);
+  color: black;
   transition: background 0.2s, transform 0.1s;
 }
 

@@ -3,6 +3,9 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import "../styles/QueryRunner.css";
 import { AuthContext } from "../contexts/AuthContext";
 import ModalPortal from "../components/ModalPortal";
+import { IoMdSunny } from "react-icons/io";
+import { IoMoon } from "react-icons/io5";
+
 
 export default function QueryRunner({
   query,
@@ -265,7 +268,7 @@ export default function QueryRunner({
             className="theme-toggle pretty-toggle"
             onClick={() => setDarkMode(!darkMode)}
           >
-            <span className="icon">{darkMode ? "🌞" : "🌜"}</span>
+            <span className="icon">{darkMode ? <IoMdSunny /> : <IoMoon />}</span>
             <span className="label">{darkMode ? "Light" : "Dark"}</span>
           </button>
         </div>

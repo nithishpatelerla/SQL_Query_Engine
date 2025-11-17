@@ -1,6 +1,6 @@
 # SQL Query Engine — Full Stack SQL Query Execution Web App
 
-SQLRunner is a full-stack application that allows users to:
+SQL Query Engine is a full-stack application that allows users to:
 
 - Create an account and log in
 - Write and execute SQL queries
@@ -35,24 +35,26 @@ SQLRunner is a full-stack application that allows users to:
 
 ---
 
-## 📁 Project Structure
-
-SQL_Runner/
+SQL_Query_Engine/
 │
-├── frontend/ # React UI
-│ ├── src/
-│ │ ├── components/ # Login, Signup, Sidebar, QueryRunner, etc
-│ │ ├── contexts/
-│ │ └── App.js
-│ ├── package.json
+├── frontend/                  # React UI
+│   ├── src/
+│   │   ├── components/        # Login, Signup, Sidebar, QueryRunner, RightPanel, Loader
+│   │   ├── pages/             # LoginPage, SignupPage, MainPage
+│   │   ├── context/           # AuthContext
+│   │   ├── styles/            # CSS files for premium UI
+│   │   └── App.js
+│   │
+│   ├── public/
+│   ├── package.json
+│   └── README.md
 │
-├── backend/ # Python API
-│ ├── app.py
-│ ├── requirements.txt
-│ └── venv/ # (optional) Python virtual environment
+├── backend/                   # Python FastAPI/Flask service
+│   ├── app.py                 # Core API (execute queries, get tables, schema, history)
+│   ├── requirements.txt       # Python dependencies
+│   └── venv/                  # (Optional) Python virtual environment
 │
-└── sql_runner.db # SQLite database
-
+└── sql_runner.db              # SQLite database
 
 
 🔗 Connecting Frontend ↔ Backend
