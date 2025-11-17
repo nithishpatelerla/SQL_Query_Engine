@@ -5,7 +5,7 @@ import React, {
   useState
 } from "react";
 import "../styles/QueryRunner.css";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../contexts/AuthContext";
 import ModalPortal from "./ModalPortal";
 import { IoMdSunny } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
