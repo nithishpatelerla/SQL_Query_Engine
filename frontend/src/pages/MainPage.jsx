@@ -6,11 +6,19 @@ import QueryRunner from "../components/QueryRunner";
 import RightPanel from "../components/RightPanel";
 import { AuthContext } from "../contexts/AuthContext";
 
+
+
 export default function MainPage() {
   const { user, logout } = useContext(AuthContext);
+const isMobile = window.innerWidth <= 1100;
 
-  const [leftOpen, setLeftOpen] = useState(true);
-  const [rightOpen, setRightOpen] = useState(true);
+const [leftOpen, setLeftOpen] = useState(!isMobile);
+const [rightOpen, setRightOpen] = useState(!isMobile);
+
+
+
+  // const [leftOpen, setLeftOpen] = useState(true);
+  // const [rightOpen, setRightOpen] = useState(true);
   const [selectedTable, setSelectedTable] = useState(null);
   const [resetRunner, setResetRunner] = useState(false);
 
@@ -116,10 +124,13 @@ export default function MainPage() {
         <button
           className="collapse-handle left-handle"
           style={{ left: leftBtnX, top: 140 }}
-          onClick={() => {
-            setLeftOpen(!leftOpen);
-            setTimeout(updateButtonPositions, 300);
-          }}
+         onClick={() => {
+  if (isMobile) setLeftOpen(false);
+  setRightOpen(!rightOpen);
+  setTimeout(updateButtonPositions, 300);
+}}
+
+
         >
           {leftOpen ? "<" : ">"}
         </button>
@@ -141,10 +152,13 @@ export default function MainPage() {
         <button
           className="collapse-handle right-handle"
           style={{ left: rightBtnX, top: 140 }}
-          onClick={() => {
-            setRightOpen(!rightOpen);
-            setTimeout(updateButtonPositions, 300);
-          }}
+        onClick={() => {
+  if (isMobile) setRightOpen(false);
+  setLeftOpen(!leftOpen);
+  setTimeout(updateButtonPositions, 300);
+}}
+
+
         >
           {rightOpen ? ">" : "<"}
         </button>
