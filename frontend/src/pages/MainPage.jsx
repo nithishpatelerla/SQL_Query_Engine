@@ -124,11 +124,12 @@ const [rightOpen, setRightOpen] = useState(!isMobile);
         <button
           className="collapse-handle left-handle"
           style={{ left: leftBtnX, top: 140 }}
-         onClick={() => {
-  if (isMobile) setLeftOpen(false);
-  setRightOpen(!rightOpen);
+onClick={() => {
+  if (isMobile) setRightOpen(false);
+  setLeftOpen(!leftOpen);
   setTimeout(updateButtonPositions, 300);
 }}
+    
 
 
         >
@@ -152,9 +153,9 @@ const [rightOpen, setRightOpen] = useState(!isMobile);
         <button
           className="collapse-handle right-handle"
           style={{ left: rightBtnX, top: 140 }}
-        onClick={() => {
-  if (isMobile) setRightOpen(false);
-  setLeftOpen(!leftOpen);
+             onClick={() => {
+  if (isMobile) setLeftOpen(false);
+  setRightOpen(!rightOpen);
   setTimeout(updateButtonPositions, 300);
 }}
 
