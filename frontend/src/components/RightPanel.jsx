@@ -1,6 +1,9 @@
 // src/components/RightPanel.jsx
 import React, { useEffect, useState } from "react";
 import BASE_URL from "../config"; 
+import { FaFolder } from "react-icons/fa";
+import { MdOutlinePushPin } from "react-icons/md";
+
 import "../styles/RightPanel.css";
 
 export default function RightPanel({ selectedTable }) {
@@ -54,7 +57,7 @@ export default function RightPanel({ selectedTable }) {
             <>
               {/* Schema Section */}
               <div className="schema-block">
-                <div className="schema-title">📁 {selectedTable}</div>
+                <div className="schema-title"><FaFolder /> {selectedTable}</div>
                 <ul className="schema-list">
                   {info.columns.map((c) => (
                     <li key={c.name}>
@@ -68,7 +71,7 @@ export default function RightPanel({ selectedTable }) {
 
               {/* Sample Rows Section */}
               <div className="schema-block">
-                <div className="schema-title">📌 Table Rows</div>
+                <div className="schema-title"><MdOutlinePushPin /> Table Rows</div>
 
                 {info.sample.length > 0 ? (
                   <table className="db-table">
