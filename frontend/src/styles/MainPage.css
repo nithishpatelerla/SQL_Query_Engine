@@ -1,56 +1,18 @@
-/* ------------------------------------------------------------- */
-/* MainPage.css — FULL THEME-MATCHED VERSION (HTML-style design) */
-/* ------------------------------------------------------------- */
+/* MAINPAGE.CSS — Desktop stays same, mobile gets overlay */
 
 :root {
   --header-height: 70px;
 }
 
-/* Entire page container */
 .main-page {
   min-height: 100vh;
   width: 100%;
-  background: var(--bg); /* gradient from theme.css */
+  background: var(--bg);
   color: var(--text);
-  transition: background 0.4s ease, color 0.3s ease;
   padding-bottom: 20px;
 }
-.logo {
-  height: 40px;
-  width: 40px;
-  text-align: center;
-  font-weight: 900;
-  font-size: 24px;
-  color: #e6eaf3;
-  background-color: #1a1d52;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.logo-wrap {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-}
 
-.logo-img {
-  height: 40px;
-  width: 40px;
-  object-fit: contain;
-  border-radius: 8px; /* remove if your image is circular */
-}
-
-.logo-text {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--accent);
-}
-
-/* ---------------------- */
-/* HEADER (navbar clone)  */
-/* ---------------------- */
+/* ---------- HEADER ---------- */
 .header {
   height: var(--header-height);
   display: flex;
@@ -58,44 +20,10 @@
   justify-content: space-between;
   padding: 0 25px;
   margin: 15px 20px;
-  font-size: 1.3rem;
-  font-weight: 600;
   border-radius: 14px;
 }
 
-/* Brand name */
-.header .brand {
-  color: var(--accent);
-  font-weight: 600;
-}
-
-/* Right header section */
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  color: var(--text);
-}
-
-.logout-btn {
-  padding: 8px 16px;
-  border-radius: 8px;
-  background: #2563eb; /* DEFAULT BLUE */
-  color: white;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: background 0.25s;
-}
-
-.logout-btn:hover {
-  background: #1d4ed8; /* DARKER BLUE ON HOVER */
-}
-
-/* ---------------------- */
-/* MAIN 3-PANEL LAYOUT    */
-/* ---------------------- */
-
+/* ---------- LAYOUT ---------- */
 .layout-wrap {
   display: flex;
   gap: 20px;
@@ -103,27 +31,57 @@
   position: relative;
 }
 
-/* ------------- LEFT PANEL -------------- */
+/* ---------- DESKTOP PANELS ---------- */
+.left-col,
+.right-col {
+  border-radius: 14px;
+  padding: 20px;
+  transition: 0.35s ease;
+}
+
 .left-col {
   width: 470px;
   min-width: 330px;
   max-width: 520px;
-  padding: 20px;
   overflow-y: auto;
-  border-radius: 14px;
-  transition: 0.35s ease;
 }
+
 .left-col.closed {
   width: 0;
   min-width: 0;
   opacity: 0;
   padding: 0;
-  margin: 0;
   transform: translateX(-10px);
   overflow: hidden;
 }
 
-/* Collapse handle */
+.right-col {
+  width: 360px;
+  min-width: 260px;
+  max-width: 420px;
+  overflow-y: auto;
+}
+
+.right-col.closed {
+  width: 0;
+  min-width: 0;
+  opacity: 0;
+  padding: 0;
+  transform: translateX(10px);
+  overflow: hidden;
+}
+
+/* Middle */
+.middle-col {
+  flex: 1;
+  min-width: 420px;
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- DESKTOP HANDLES ---------- */
 .collapse-handle {
   position: absolute;
   width: 36px;
@@ -138,87 +96,83 @@
   justify-content: center;
   box-shadow: var(--shadow);
   color: var(--text);
-  transition: background 0.3s ease, border-color 0.3s ease;
-}
-.collapse-handle:hover {
-  background: rgba(255, 255, 255, 0.6);
 }
 
-/* -------------- MIDDLE PANEL (QueryRunner) -------------- */
-.middle-col {
-  flex: 1;
-  min-width: 420px;
-  padding: 20px;
-  border-radius: 14px;
-  display: flex;
-  overflow: visible; /* FIX */
-  flex-direction: column;
-  gap: 15px;
-  transition: 0.3s ease;
-}
+/* ============================================================ */
+/* =============== MOBILE OVERLAY PANELS ====================== */
+/* ============================================================ */
 
-/* -------------- RIGHT PANEL -------------------- */
-.right-col {
-  width: 360px;
-  min-width: 260px;
-  max-width: 420px;
-  padding: 20px;
-  overflow-y: auto;
-  border-radius: 14px;
-  transition: 0.35s ease;
-}
-.right-col.closed {
-  width: 0;
-  min-width: 0;
-  opacity: 0;
-  padding: 0;
-  margin: 0;
-  transform: translateX(10px);
-  overflow: hidden;
-}
-
-/* ---------------------- */
-/* GLASS STYLE for ALL    */
-/* ---------------------- */
-
-.left-col.glass,
-.middle-col.glass,
-.right-col.glass,
-.header.glass {
-  background: var(--glass-bg) !important;
-  border: 1px solid var(--glass-border) !important;
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border-radius: 14px;
-  box-shadow: var(--shadow);
-  color: var(--text);
-}
-
-/* ---------------------- */
-/* RESPONSIVE BEHAVIOUR   */
-/* ---------------------- */
 @media (max-width: 1100px) {
+  
+  /* hide desktop-only items */
   .left-col,
   .right-col,
   .collapse-handle {
     display: none !important;
   }
+
   .middle-col {
     min-width: 0;
     padding: 15px;
   }
-}
 
-@media (max-width: 768px) {
-  .header {
-    margin: 10px;
+  /* ===== MOBILE OVERLAY PANELS ===== */
+
+  .mobile-overlay-left,
+  .mobile-overlay-right {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 80%;
+    max-width: 330px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow);
+    z-index: 9999;
+    padding: 20px;
+    overflow-y: auto;
+    transition: transform 0.35s ease;
   }
-  .layout-wrap {
-    flex-direction: column;
-    padding: 10px;
+
+  .mobile-overlay-left {
+    left: 0;
+    transform: translateX(-100%);
+  }
+  .mobile-overlay-left.show {
+    transform: translateX(0);
+  }
+
+  .mobile-overlay-right {
+    right: 0;
+    transform: translateX(100%);
+  }
+  .mobile-overlay-right.show {
+    transform: translateX(0);
+  }
+
+  /* FLOAT BUTTONS */
+  .mobile-float-left,
+  .mobile-float-right {
+    position: fixed;
+    top: 45%;
+    width: 40px;
+    height: 50px;
+    border-radius: 10px;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .mobile-float-left {
+    left: 5px;
+  }
+  .mobile-float-right {
+    right: 5px;
   }
 }
-
-
-
-

@@ -327,7 +327,10 @@
   padding-left: 18px;
   margin-bottom: 18px;
 }
+.modal-text{
 
+  color: black;
+}
 .modal-close {
   background: var(--accent);
   color: white;
