@@ -11,25 +11,26 @@ export default function MainPage() {
 
   const [leftOpen, setLeftOpen] = useState(true);
   const [rightOpen, setRightOpen] = useState(true);
-
-  const [mobileLeftOpen, setMobileLeftOpen] = useState(false);
-  const [mobileRightOpen, setMobileRightOpen] = useState(false);
-
   const [selectedTable, setSelectedTable] = useState(null);
-  const [query, setQuery] = useState("");
-
-  const [availableTables, setAvailableTables] = useState([]);
-  const [historyOpen, setHistoryOpen] = useState(false);
   const [resetRunner, setResetRunner] = useState(false);
 
-  // Refs for desktop collapse logic
+  // lifted state for query and history so logo can clear it
+  const [query, setQuery] = useState("");
+  const [historyOpen, setHistoryOpen] = useState(false);
+
+  // tables list (Sidebar will notify parent)
+  const [availableTables, setAvailableTables] = useState([]);
+
+  // Refs for measuring panels
   const leftRef = useRef(null);
   const middleRef = useRef(null);
   const rightRef = useRef(null);
 
+  // Dynamic button positions
   const [leftBtnX, setLeftBtnX] = useState(0);
   const [rightBtnX, setRightBtnX] = useState(0);
 
+  // Update button positions with DOM measurements
   const updateButtonPositions = () => {
     const middleRect = middleRef.current?.getBoundingClientRect();
     const leftRect = leftRef.current?.getBoundingClientRect();
@@ -56,43 +57,53 @@ export default function MainPage() {
     setTimeout(updateButtonPositions, 200);
   }, []);
 
+  // LOGO click handler: close panels, clear query, close history
   const handleLogoClick = () => {
     setLeftOpen(false);
     setRightOpen(false);
     setQuery("");
     setHistoryOpen(false);
     setSelectedTable(null);
-    setResetRunner(true);
+    setSelectedTable(null); // ✔ closes opened table
+    setResetRunner(true); // NEW — tell QueryRunner to reset
 
+    // small reposition after CSS transitions
     setTimeout(updateButtonPositions, 250);
   };
 
   return (
     <div className="main-page">
-
-      {/* HEADER */}
+      {/* Header */}
       <div className="header glass">
-        <div className="brand" onClick={handleLogoClick}>
-          <img src="/logo.png" alt="Logo" className="logo-img" />
-          <span>SQL Query Engine</span>
+        <div
+          className="brand center"
+          style={{ gap: 10, cursor: "pointer" }}
+          onClick={handleLogoClick}
+          title="SQLRunner — click to reset layout & clear editor"
+        >
+          <div className="logo-wrap" onClick={handleLogoClick}>
+            <img src="/logo.png" alt="App Logo" className="logo-img" />
+          </div>
+
+          <div style={{ fontWeight: 700 }}>SQL Query Engine</div>
         </div>
 
         <div className="header-right">
-          <span>Hello, {user.username}</span>
-          <button className="logout-btn" onClick={logout}>Logout</button>
+          <span>Hello, {user?.username}</span>
+          <button
+            className="logout-btn"
+            onClick={() => {
+              logout();
+            }}
+          >
+            Logout
+          </button>
         </div>
       </div>
 
-      {/* MOBILE BUTTONS */}
-      <div className="mobile-buttons">
-        <button className="mobile-btn" onClick={() => setMobileLeftOpen(true)}>📂 Tables</button>
-        <button className="mobile-btn" onClick={() => setMobileRightOpen(true)}>📄 Schema</button>
-      </div>
-
-      {/* MAIN WRAPPER */}
+      {/* Main layout */}
       <div className="layout-wrap">
-
-        {/* LEFT PANEL DESKTOP */}
+        {/* LEFT PANEL */}
         <aside
           className={`left-col glass ${leftOpen ? "open" : "closed"}`}
           ref={leftRef}
@@ -103,7 +114,7 @@ export default function MainPage() {
           />
         </aside>
 
-        {/* LEFT COLLAPSE BUTTON (Desktop only) */}
+        {/* LEFT COLLAPSE BUTTON */}
         <button
           className="collapse-handle left-handle"
           style={{ left: leftBtnX, top: 140 }}
@@ -128,7 +139,7 @@ export default function MainPage() {
           />
         </aside>
 
-        {/* RIGHT COLLAPSE BUTTON DESKTOP */}
+        {/* RIGHT COLLAPSE BUTTON */}
         <button
           className="collapse-handle right-handle"
           style={{ left: rightBtnX, top: 140 }}
@@ -140,27 +151,13 @@ export default function MainPage() {
           {rightOpen ? ">" : "<"}
         </button>
 
-        {/* RIGHT PANEL DESKTOP */}
+        {/* RIGHT PANEL */}
         <aside
           className={`right-col glass ${rightOpen ? "open" : "closed"}`}
           ref={rightRef}
         >
           <RightPanel selectedTable={selectedTable} />
         </aside>
-      </div>
-
-      {/* MOBILE SLIDE-IN PANELS */}
-
-      {/* Mobile Sidebar */}
-      <div className={`mobile-left-panel ${mobileLeftOpen ? "show" : ""}`}>
-        <button className="close-mobile-btn" onClick={() => setMobileLeftOpen(false)}>Close</button>
-        <Sidebar onTableSelect={setSelectedTable} />
-      </div>
-
-      {/* Mobile Schema */}
-      <div className={`mobile-right-panel ${mobileRightOpen ? "show" : ""}`}>
-        <button className="close-mobile-btn" onClick={() => setMobileRightOpen(false)}>Close</button>
-        <RightPanel selectedTable={selectedTable} />
       </div>
     </div>
   );
