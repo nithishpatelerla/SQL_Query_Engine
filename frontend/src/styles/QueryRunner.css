@@ -338,7 +338,7 @@
   float: right;
 }
 .modal-close:hover {
-  background: var(--accent-2);
+  background: blue;
 }
 .modal-overlay {
   position: fixed;
@@ -393,6 +393,7 @@
 .modal-list {
   padding-left: 20px;
   margin-top: 10px;
+  color: black;
 }
 
 .modal-close {
