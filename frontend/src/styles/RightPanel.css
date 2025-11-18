@@ -1,18 +1,22 @@
 /* src/styles/RightPanel.css */
+
 .right-root {
   font-size: 14px;
   color: #05224a;
 }
+
 .tabs {
   display: block;
 }
+
 .tabs-row {
   display: flex;
   gap: 10px;
   margin-bottom: 12px;
 }
+
 .tab {
-  background: #2563eb; /* blue solid */
+  background: #2563eb;
   color: white;
   font-weight: 500;
   border: none;
@@ -26,40 +30,105 @@
   background: #1d4ed8;
 }
 
-/* hide actual radio inputs */
 input[name="rp-tab"] {
-  display: none;
+  display: none !important;
 }
 
-/* tab content visibility controlled via CSS sibling selector */
-#rp-schema:checked ~ .tabs-row + #rp-schema-content,
-#rp-info:checked ~ .tabs-row + #rp-info-content,
-#rp-tips:checked ~ .tabs-row + #rp-tips-content {
+.tab-content {
   display: block;
 }
 
-/* default show schema content block via simple order in component (we used checked input) */
-.tab-content {
-  display: none;
+/* Hint */
+.schema-hint {
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 14px;
 }
 
-/* schema style */
+/* TABLE LIST */
+.rp-table-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.rp-table-item {
+  padding: 8px 14px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.rp-table-item:hover {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.rp-table-item.active {
+  background: var(--accent);
+  color: white;
+}
+
+/* SCHEMA BLOCKS */
 .schema-block {
   margin-bottom: 14px;
 }
+
 .schema-title {
   font-weight: 700;
   margin-bottom: 6px;
   color: #976b3a;
 }
+
 .schema-list {
   padding-left: 16px;
   margin: 0;
-  list-style: none;
 }
+
 .schema-list li {
   margin: 6px 0;
   color: var(--accent);
   font-weight: 500;
 }
 
+/* SCROLL WRAPPER FOR TABLE ROWS */
+.schema-table-scroll {
+  max-height: 260px;
+  overflow: auto;
+  border-radius: 12px;
+  margin-top: 6px;
+}
+
+/* TABLE STYLING */
+.db-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.db-table thead th {
+  background: rgba(255, 255, 255, 0.55);
+  padding: 12px;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+
+.db-table td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.db-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.db-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.5);
+}

@@ -1,5 +1,5 @@
 /* -------------------------------------------------------- */
-/* Sidebar.css — Full HTML-demo theme applied               */
+/* Sidebar.css — Preview-only version                       */
 /* -------------------------------------------------------- */
 
 .sidebar-root {
@@ -8,90 +8,79 @@
   width: 100%;
 }
 
-/* Section header (table name) */
-.sidebar-section {
-  margin-bottom: 22px;
-}
-
-.sidebar-section h3 {
-  margin: 0 0 10px 0;
+/* Title at the top */
+h4.small {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+  font-size: 15px;
   font-weight: 600;
-  color: #976b3a;
-  font-size: x-large;
-  font-weight: 900;
-  cursor: pointer;
-  transition: color 0.25s;
+  color: var(--accent);
 }
 
-.sidebar-section h3:hover {
-  color: var(--accent-light);
+/* Container for all preview blocks */
+.preview-section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
-/* Table wrapper */
-.table-wrap {
-  overflow: auto;
-  border-radius: 12px;
+/* Each preview card */
+.preview-block {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: 12px;
+  padding: 10px;
   box-shadow: var(--shadow);
 }
 
-/* Inner table */
-.db-table {
+/* Table name */
+.preview-block h5 {
+  margin: 0 0 10px 0;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--accent);
+}
+
+/* Scroll area for table preview */
+.preview-scroll {
+  max-height: 200px;
+  overflow: auto;
+  border-radius: 10px;
+}
+
+/* Preview table */
+.preview-table {
   width: 100%;
   border-collapse: collapse;
+  font-size: 13px;
   background: transparent;
 }
 
-/* Header cells */
-.db-table th {
+/* Table header */
+.preview-table th {
   background: rgba(255, 255, 255, 0.45);
-  padding: 10px 12px;
+  padding: 8px;
   text-align: left;
   font-weight: 600;
-  font-size: 13px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   color: var(--text);
-  transition: background 0.25s, color 0.25s;
 }
 
-/* Data cells */
-.db-table td {
-  padding: 9px 12px;
-  font-size: 13px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+/* Table rows */
+.preview-table td {
+  padding: 7px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
   color: var(--text);
-  transition: background 0.25s;
 }
 
-/* Row hover */
-.db-table tr:hover td {
+/* Hover effect */
+.preview-table tr:hover td {
   background: var(--highlight);
 }
 
-/* Alternating subtle striping */
-.db-table tr:nth-child(even) td {
-  background: rgba(255, 255, 255, 0.06);
+/* If no preview data */
+.small {
+  font-size: 13px;
+  color: var(--muted);
 }
-
-/* Dark mode adjustments */
-body.dark .db-table th {
-  background: rgba(255, 255, 255, 0.18);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-body.dark .db-table tr:nth-child(even) td {
-  background: rgba(255, 255, 255, 0.04);
-}
-
-.sidebar-root h4.small {
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  padding-bottom: 4px;
-}
-
-.table-list {
-  cursor: pointer;
-}
-

@@ -108,10 +108,8 @@ export default function MainPage() {
           className={`left-col glass ${leftOpen ? "open" : "closed"}`}
           ref={leftRef}
         >
-          <Sidebar
-            onTableSelect={setSelectedTable}
-            onTablesChange={setAvailableTables}
-          />
+          <Sidebar onTablesChange={setAvailableTables} />
+
         </aside>
 
         {/* LEFT COLLAPSE BUTTON */}
@@ -156,7 +154,11 @@ export default function MainPage() {
           className={`right-col glass ${rightOpen ? "open" : "closed"}`}
           ref={rightRef}
         >
-          <RightPanel selectedTable={selectedTable} />
+          <RightPanel
+          selectedTable={selectedTable}
+          tables={availableTables}
+          onTableSelect={setSelectedTable}
+          />
         </aside>
       </div>
     </div>
